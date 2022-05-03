@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    container_name: dash_explorer__app
+    command: python3 app/main.py
