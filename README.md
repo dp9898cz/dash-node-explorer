@@ -1,6 +1,6 @@
 # Platforma na monitorování uzlů v P2P síti DASH
 
-## Projekt do předmětu BDA, VUT FIT
+### Projekt do předmětu BDA, VUT FIT
 
 ### Bc. Daniel Pátek
 
