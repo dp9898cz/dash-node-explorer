@@ -16,10 +16,16 @@ def peers():
     all_peers = list(peers_col.find())
     return json_util.dumps({"peers": all_peers, "count": len(all_peers)})
 
-@app.route("/getDoneAddresses")
-def addresses():
-    return {}
+@app.route("/getAddresses")
+def addrs():
+    db = initialize_mongo()
+    addr_col = db["not_done_addrs"]
+    all_addr = list(addr_col.find())
+    return json_util.dumps({"addrs": all_addr, "count": len(all_addr)})
 
-@app.route("/getUndoneAddresses")
-def undone_addresses():
-    return {}
+@app.route("/getDone")
+def done():
+    db = initialize_mongo()
+    addr_col = db["done_addrs"]
+    all_addr = list(addr_col.find())
+    return json_util.dumps({"addrs": all_addr, "count": len(all_addr)})

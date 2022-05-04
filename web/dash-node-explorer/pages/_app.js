@@ -1,11 +1,11 @@
 import Head from "next/head";
-import { MantineProvider } from "@mantine/core";
+import { Box, MantineProvider } from "@mantine/core";
 
 export default function App(props) {
     const { Component, pageProps } = props;
 
     return (
-        <>
+        <Box style={{ overflow: "hidden" }}>
             <Head>
                 <title>Page title</title>
                 <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -21,6 +21,6 @@ export default function App(props) {
             >
                 <Component {...pageProps} />
             </MantineProvider>
-        </>
+        </Box>
     );
 }

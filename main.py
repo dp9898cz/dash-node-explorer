@@ -8,15 +8,17 @@ from app.api import app
 from time import sleep
 import threading
 
+START_NODE_SERVICES = True
+CLEAR_DB = True
 
 if __name__ == "__main__":
     print("Starting at: " + str(stats.start))
     db = initialize_mongo()
-    
-    #uncomment next lines to drop DB first
-    #db.drop_collection("not_done_addrs")
-    #db.drop_collection("done_addrs")
-    #db.drop_collection("peers")
+
+    if (CLEAR_DB):    
+        db.drop_collection("not_done_addrs")
+        db.drop_collection("done_addrs")
+        db.drop_collection("peers")
 
     address_getter = threading.Thread(target=new_addresses_getter)
     address_getter.daemon = True
@@ -27,9 +29,10 @@ if __name__ == "__main__":
     address_connector = threading.Thread(target=connector)
     address_connector.daemon = True
 
-    address_getter.start()
-    peer_getter_p.start()
-    address_connector.start()
+    if (START_NODE_SERVICES):
+        address_getter.start()
+        peer_getter_p.start()
+        address_connector.start()
     
     #start api server
     app.run()
