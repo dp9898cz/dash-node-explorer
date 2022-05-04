@@ -21,10 +21,17 @@ class MessageWrapper:
             if (result is not None):
                 if (result["error"]):
                     print(result["error"])
+                    return False
                 return result["result"]
             else:
                 return []
 
         except Exception as e:
-            print(e)
             return []
+    
+    def check_node_running(self):
+        try:
+            resp = self.sendMessage("ping", [])
+            return resp == None
+        except Exception as e:
+            return False

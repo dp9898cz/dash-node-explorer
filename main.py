@@ -1,17 +1,21 @@
 from app.message import MessageWrapper
-from app.json_export import JSONWrapper
-from app.mongo import initialize_mongo
+from app.mongo import initialize_mongo, stats
 from app.address_getter import new_addresses_getter
 from app.peer_getter import peer_getter
 from app.connector import connector
+from app.api import app
 
 from time import sleep
 import threading
 
 
 if __name__ == "__main__":
+    print("Starting at: " + str(stats.start))
     db = initialize_mongo()
+    
+    #uncomment next lines to drop DB first
     #db.drop_collection("not_done_addrs")
+    #db.drop_collection("done_addrs")
     #db.drop_collection("peers")
 
     address_getter = threading.Thread(target=new_addresses_getter)
@@ -26,7 +30,6 @@ if __name__ == "__main__":
     address_getter.start()
     peer_getter_p.start()
     address_connector.start()
-
-    # do not exit main process
-    while True:
-        sleep(100)
+    
+    #start api server
+    app.run()

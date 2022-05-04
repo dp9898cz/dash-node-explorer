@@ -11,14 +11,22 @@ def peer_getter():
     db["peers"].create_index([("addr", ASCENDING)], unique=True)
     
     mw = MessageWrapper()
-    
     while True:
-        print("Getting peers")
-        peers = mw.sendMessage("getpeerinfo", {})
-        # import each peer to db
-        for peer in peers:
-            try:
-                peers_db.insert_one(peer)
-            except Exception as e:
-                pass
-        sleep(10)
+        if (mw.check_node_running()):
+            print("Getting peers")
+            peers = mw.sendMessage("getpeerinfo", {})
+            if (peers == False):
+                # node is starting
+                sleep(20)
+                continue
+            # import each peer to db
+            if (peers is not None and peers != False):
+                for peer in peers:
+                    try:
+                        peers_db.insert_one(peer)
+                    except Exception as e:
+                        pass
+            sleep(10)
+        else:
+            # waiting for node to start
+            sleep(20)
