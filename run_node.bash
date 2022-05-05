@@ -1,4 +1,3 @@
 #!/bin/bash
 
-
-exec dashnode/bin/dashd
+exec dashd -prune=1000 -daemon

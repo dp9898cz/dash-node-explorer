@@ -2,5 +2,5 @@ __pycache__
 venv
 .env
 curl
-init_dashnode.bash
 node_modules
+xpatek08.zip

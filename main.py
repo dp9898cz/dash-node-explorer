@@ -9,7 +9,7 @@ from time import sleep
 import threading
 
 START_NODE_SERVICES = True
-CLEAR_DB = True
+CLEAR_DB = False
 
 if __name__ == "__main__":
     print("Starting at: " + str(stats.start))
