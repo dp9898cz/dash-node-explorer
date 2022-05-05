@@ -9,6 +9,8 @@ Tento program umožňuje zmapován všech dostupných uzlů v síti dash. Získ�
 
 ### Instalace
 
+**Soubory Dockerfile a docker-compose.yml nejsou zatím funkční.**
+
 Pro spuštění programu je nutné nejprve stáhnout [`dashcore`](https://github.com/dashpay/dash/releases) ve verzi 18.0 a vyšší. Je nutné mít programy `dashd` a `dash-cli` umístěné v `$PATH`. Pro vytvoření správně umístěného `dash.conf` můžeme využít příkaz:
 
 ```bash
